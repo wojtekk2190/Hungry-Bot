@@ -191,7 +191,7 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
 
         word+=`\n Customer Name is : ${customerName} `
 
-        word+=`\n Customer Phone number  is : ${customerPhone} `
+        word+=`\n Customer Phone number is : ${customerPhone} `
 
         axios.post('https://telegramapi-bot.herokuapp.com/message',{
           data:word
