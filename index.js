@@ -115,7 +115,7 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
         let pcounter=0;
        return getCustomerCreditData().then(res => {
           res.data.map(person => {
-          if(person.Password == password && person.CVC == cvc){
+          if(person.Password == password){
                   agent.add(`payment is successful. Click /here to return to the main menu.`);
                   agent.add('click /Receipt to see reciept')
                   // getReceipt()
