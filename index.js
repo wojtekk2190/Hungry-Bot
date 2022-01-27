@@ -182,7 +182,7 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
         deliveryTime=TimechoosenForOrder.pop()
         TimechoosenForOrder=[""]
         
-        word+=`\n Dilevery Time is ${deliveryTime}`
+        word+=`\n Delivery Time is ${deliveryTime}`
 
         TotalPrice.push(totalPrice)
 
