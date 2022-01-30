@@ -154,7 +154,7 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
   
           console.log("Order is this ",TotalOrders)
           agent.add("Order is placed successfully !!")
-          agent.add("To continue ordering, select order to enter your next item.")
+          agent.add("To continue ordering, select order to enter your next item or proceed to choose a pick up time.")
           agent.add(new Suggestion('Pick Up scheduling'))
           agent.add(new Suggestion('Order'))
         }
@@ -173,7 +173,7 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
         let totalPrice=TotalPrice.pop()
         for(i in TotalOrders){
           console.log(TotalOrders[i])
-          let new_item=`\n item Id : ${TotalOrders[i].ItemId} \n Item Name: ${TotalOrders[i].ItemName} \n Stall Name:${TotalOrders[i].StallName} \n item Quantity : ${TotalOrders[i].Quantity} \n Price : $${TotalOrders[i].TotalPrice} \n`
+          let new_item=`\n item Id : ${TotalOrders[i].ItemId} \n Item Name: ${TotalOrders[i].ItemName} \n Stall Name: ${TotalOrders[i].StallName} \n item Quantity : ${TotalOrders[i].Quantity} \n Price : $${TotalOrders[i].TotalPrice} \n`
           word+=new_item
           totalPrice+=TotalOrders[i].TotalPrice
         }
@@ -183,7 +183,7 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
         deliveryTime=TimechoosenForOrder.pop()
         TimechoosenForOrder=[""]
         
-        word+=`\n Delivery Time is ${deliveryTime}`
+        word+=`\n Pick Up Time is ${deliveryTime}`
 
         TotalPrice.push(totalPrice)
 
