@@ -153,7 +153,7 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
           TotalOrders.push(order)
   
           console.log("Order is this ",TotalOrders)
-          agent.add("Order is placed successfully !!")
+          agent.add("Order is successfully added to cart!!")
           agent.add("To continue ordering, select order to enter your next item or proceed to choose a pick up time.")
           agent.add(new Suggestion('Pick Up scheduling'))
           agent.add(new Suggestion('Order'))
