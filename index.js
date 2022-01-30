@@ -173,7 +173,7 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
         let totalPrice=TotalPrice.pop()
         for(i in TotalOrders){
           console.log(TotalOrders[i])
-          let new_item=`\n item Id : ${TotalOrders[i].ItemId} \n Item Name: ${TotalOrders[i].ItemName} \n Stall Name: ${TotalOrders[i].StallName} \n item Quantity : ${TotalOrders[i].Quantity} \n Price : $${TotalOrders[i].TotalPrice} \n`
+          let new_item=`\n Item ID : ${TotalOrders[i].ItemId} \n Item Name: ${TotalOrders[i].ItemName} \n Stall Name: ${TotalOrders[i].StallName} \n Item Quantity : ${TotalOrders[i].Quantity} \n Price : $${TotalOrders[i].TotalPrice} \n`
           word+=new_item
           totalPrice+=TotalOrders[i].TotalPrice
         }
