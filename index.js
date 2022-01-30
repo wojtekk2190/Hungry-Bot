@@ -104,7 +104,7 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
             axios.post('https://sheet.best/api/sheets/e7c179e9-eef0-4dd6-aa7d-e14754cb8127', data);
             // getReceipt()
             agent.add(`Card has been added and payment is completed. Click /here to return to the main menu.`);
-            agent.add('click /Receipt to see reciept')
+            agent.add('Click /Receipt to see reciept')
                   }
               });
          });
@@ -116,8 +116,8 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
        return getCustomerCreditData().then(res => {
           res.data.map(person => {
           if(person.Password == password){
-                  agent.add(`payment is successful. Click /here to return to the main menu.`);
-                  agent.add('click /Receipt to see reciept')
+                  agent.add(`Payment is successful. Click /here to return to the main menu.`);
+                  agent.add('Click /Receipt to see reciept')
                   // getReceipt()
                   pcounter=1
                 }
@@ -152,8 +152,9 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
   
           TotalOrders.push(order)
   
-          console.log("order is this ",TotalOrders)
+          console.log("Order is this ",TotalOrders)
           agent.add("Order is placed successfully !!")
+          agent.add("To continue ordering, select order to enter your next item.")
           agent.add(new Suggestion('Pick Up scheduling'))
           agent.add(new Suggestion('Order'))
         }
@@ -213,8 +214,6 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
         }))
 
       }
-
-
 
       function pickup(agent){
         let timeChoosen=agent.parameters.pickuptime
