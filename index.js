@@ -168,52 +168,52 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
       }
 
 
-    function getReceipt(){
-    let word=''
-    let totalPrice=TotalPrice.pop()
-    for(i in TotalOrders){
-      console.log(TotalOrders[i])
-      let new_item=`\n item Id : ${TotalOrders[i].ItemId} \n Item Name: ${TotalOrders[i].ItemName} \n Stall Name:${TotalOrders[i].StallName} \n item Quantity : ${TotalOrders[i].Quantity} \n Price : $${TotalOrders[i].TotalPrice} \n`
-      word+=new_item
-      totalPrice+=TotalOrders[i].TotalPrice
-    }
+      function getReceipt(){
+        let word=''
+        let totalPrice=TotalPrice.pop()
+        for(i in TotalOrders){
+          console.log(TotalOrders[i])
+          let new_item=`\n Item ID : ${TotalOrders[i].ItemId} \n Item Name: ${TotalOrders[i].ItemName} \n Stall Name: ${TotalOrders[i].StallName} \n Item Quantity : ${TotalOrders[i].Quantity} \n Price : $${TotalOrders[i].TotalPrice} \n`
+          word+=new_item
+          totalPrice+=TotalOrders[i].TotalPrice
+        }
 
-    word+=`\n Total Price is $${totalPrice}`
+        word+=`\n Total Price is $${totalPrice}`
 
-    deliveryTime=TimechoosenForOrder.pop()
-    TimechoosenForOrder=[""]
-    
-    word+=`\n Dilevery Time is ${deliveryTime}`
+        deliveryTime=TimechoosenForOrder.pop()
+        TimechoosenForOrder=[""]
+        
+        word+=`\n Pick Up Time is ${deliveryTime}`
 
-    TotalPrice.push(totalPrice)
+        TotalPrice.push(totalPrice)
 
-    let customerPhone=customerDetails.pop();
-    let customerName=customerDetails.pop();
+        let customerPhone=customerDetails.pop();
+        let customerName=customerDetails.pop();
 
-    word+=`\n Customer Name is : ${customerName} `
+        word+=`\n Customer Name is : ${customerName} `
 
-    word+=`\n Customer Phone number  is : ${customerPhone} `
+        word+=`\n Customer Phone number is : ${customerPhone} `
 
-    axios.post('https://telegramapi-bot.herokuapp.com/message',{
-      data:word
-    });
+        axios.post('https://telegramapi-bot.herokuapp.com/message',{
+          data:word
+        });
 
-     TotalOrders =[]
-     TotalPrice=[0]
+         TotalOrders =[]
+         TotalPrice=[0]
 
-    return word
-  }
-  
+        return word
+      }
+      
 
-  function showReceipt(agent){
-    
-    word=getReceipt()
-    agent.add(new Card({ 
-    title: `Receipt`,
-    text: word,
-    }))
+      function showReceipt(agent){
+        
+        word=getReceipt()
+        agent.add(new Card({ 
+        title: `Receipt`,
+        text: word,
+        }))
 
-  }
+      }
 
       function pickup(agent){
         let timeChoosen=agent.parameters.pickuptime
