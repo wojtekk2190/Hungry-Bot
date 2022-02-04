@@ -103,7 +103,7 @@ app.post("/webhook",express.json(),(request,response)=>{
             axios.post('https://sheet.best/api/sheets/e7c179e9-eef0-4dd6-aa7d-e14754cb8127', data);
             // getReceipt()
             agent.add(`Card has been added and payment is completed. Click /here to return to the main menu.`);
-            agent.add('click /Receipt to see reciept')
+            agent.add('Click /Receipt to see reciept')
                   }
               });
          });
@@ -115,8 +115,8 @@ app.post("/webhook",express.json(),(request,response)=>{
        return getCustomerCreditData().then(res => {
           res.data.map(person => {
           if(person.Password == password){
-                  agent.add(`payment is successful. Click /here to return to the main menu.`);
-                  agent.add('click /Receipt to see reciept')
+                  agent.add(`Payment is successful. Click /here to return to the main menu.`);
+                  agent.add('Click /Receipt to see reciept')
                   // getReceipt()
                   pcounter=1
                 }
@@ -151,8 +151,8 @@ app.post("/webhook",express.json(),(request,response)=>{
   
           TotalOrders.push(order)
   
-          console.log("order is this ",TotalOrders)
-          agent.add("your order is placed successfully !!")
+          console.log("Order is this ",TotalOrders)
+          agent.add("Your order is placed successfully !!")
           agent.add(new Suggestion('Pick Up scheduling'))
           agent.add(new Suggestion('Order'))
         }
@@ -171,7 +171,7 @@ app.post("/webhook",express.json(),(request,response)=>{
         let totalPrice=TotalPrice.pop()
         for(i in TotalOrders){
           console.log(TotalOrders[i])
-          let new_item=`\n item Id : ${TotalOrders[i].ItemId} \n Item Name: ${TotalOrders[i].ItemName} \n Stall Name:${TotalOrders[i].StallName} \n item Quantity : ${TotalOrders[i].Quantity} \n Price : $${TotalOrders[i].TotalPrice} \n`
+          let new_item=`\n Item Id: ${TotalOrders[i].ItemId} \n Item Name: ${TotalOrders[i].ItemName} \n Stall Name: ${TotalOrders[i].StallName} \n Item Quantity: ${TotalOrders[i].Quantity} \n Price: $${TotalOrders[i].TotalPrice} \n`
           word+=new_item
           totalPrice+=TotalOrders[i].TotalPrice
         }
@@ -181,16 +181,16 @@ app.post("/webhook",express.json(),(request,response)=>{
         deliveryTime=TimechoosenForOrder.pop()
         TimechoosenForOrder=[""]
         
-        word+=`\n Dilevery Time is ${deliveryTime}`
+        word+=`\n Pick Up Time is ${deliveryTime}`
 
         TotalPrice.push(totalPrice)
 
         let customerPhone=customerDetails.pop();
         let customerName=customerDetails.pop();
 
-        word+=`\n Customer Name is : ${customerName} `
+        word+=`\n Customer Name is: ${customerName} `
 
-        word+=`\n Customer Phone number  is : ${customerPhone} `
+        word+=`\n Customer Phone Number is: ${customerPhone} `
 
         axios.post('https://businessbot-hungry.herokuapp.com/message',{
           data:word
@@ -229,7 +229,7 @@ app.post("/webhook",express.json(),(request,response)=>{
           agent.add(new Suggestion('Payment'))
         }
         else{
-          agent.add("Please select time  between 9 AM to 8 PM")
+          agent.add("Please select time  between 9 AM to 9 PM")
           agent.add(new Suggestion('Pick Up scheduling'))
           agent.add(new Suggestion("order"))
         }
