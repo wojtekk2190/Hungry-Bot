@@ -124,7 +124,7 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
             });
           if(pcounter==0){
             agent.add("Password was incorrect Please try again ")
-            agent.add(new Suggestion("Execisting Card"))
+            agent.add(new Suggestion("Existing Card"))
             agent.add(new Suggestion("New Card"))
           }
         });
@@ -193,7 +193,7 @@ app.post("/webhook",express.json(),(request,response)=>{          //fulfillment 
 
         word+=`\n Customer Phone number  is : ${customerPhone} `
 
-        axios.post('https://telegramapi-bot.herokuapp.com/message',{
+        axios.post('https://teledilevery.herokuapp.com/message',{
           data:word
         });
 
