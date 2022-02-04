@@ -11,7 +11,6 @@ const axios = require('axios');
 
 
 
-// dialogflow app pr post ki request bhejegaa
 
 app.get("/",(req,res)=>{
     res.send("hi")
@@ -23,7 +22,7 @@ let TimechoosenForOrder=[""]
 let customerDetails=[]
 
 
-app.post("/webhook",express.json(),(request,response)=>{          //fulfillment mai bhi url mai /webhook lagana huga 
+app.post("/webhook",express.json(),(request,response)=>{          
     const agent=new WebhookClient({request:request,response:response});
  
     function getCustomerData(){
